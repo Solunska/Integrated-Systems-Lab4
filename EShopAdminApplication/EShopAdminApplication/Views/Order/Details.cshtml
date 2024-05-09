@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model EShopAdminApplication.Models.Order
+<div>Order Details</div>
+
+<div class="container-fluid">
+
+    <a class="btn btn-success">Order for @Model.Owner.UserName</a>
+    
+    @for (int i = 0; i < Model.ProductInOrders?.Count; i++)
+    {
+        var item = Model.ProductInOrders.ElementAt(i);
+
+        if(i % 3 == 0)
+        {
+           @: <div class="row mt-3" style="justify-content:center;">
+        }
+
+        <div class="col-md-3 m-3">
+
+            <div class="card" style="width: 23rem; height:100%">
+              <img class="card-img-top" src="@item.OrderedProduct.Concert.ConcertImage" style="width:100%; height:100%;" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">@item.OrderedProduct.Concert.ConcertName</h5>
+                <p class="card-text">@item.OrderedProduct.Concert.ConcertDescription</p>
+              </div>
+            </div>
+
+        </div>
+
+        if(i % 3 == 2)
+        {
+            @: </div>
+        }
+    }
+</div>
